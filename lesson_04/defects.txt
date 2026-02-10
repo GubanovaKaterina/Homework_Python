@@ -1,0 +1,50 @@
+Название:
+Метод contains чувствителен к регистру, что противоречит документации.
+
+Описание:
+Метод contains реализован с использованием string.index(symbol), который выполняет регистрозависимый поиск. 
+Это не соответствует интуитивному пониманию проверки наличия символа в строке.
+
+Шаги для воспроизведения:
+import pytest
+from string_utils import StringUtils
+string_utils = StringUtils()
+@pytest.mark.positive
+@pytest.mark.parametrize("input_str, symbol, expected", [
+    ("House", "h", True),
+])
+def test_contains_positive(input_str, symbol, expected):
+    assert string_utils.contains(input_str, symbol) == expected
+
+Ожидаемый результат:
+contains("House", "h") -> True
+
+Фактический результат:
+contains("House", "h") -> False
+contains("House", "H") -> True
+
+Серьезность: S2
+Приоритет: P2
+
+Возможные решения:
+Изменить документацию: явно указать, что поиск регистрозависимый
+Изменить реализацию: использовать регистронезависимый поиск
+
+Рекомендуемое исправление:
+def contains(self, string: str, symbol: str) -> bool:
+    # Вариант 1: Без учета регистра
+    return symbol.lower() in string.lower()
+    
+    # Вариант 2: Как сейчас, но с явным указанием в документации
+    # return symbol in string
+
+Документация:
+#Возвращает `True`, если строка содержит искомый символ и `False` - если нет
+        #Параметры:
+            #`string` - строка для обработки
+            #`symbol` - искомый символ
+       # Пример 1: `contains("SkyPro", "S") -> True`
+       # Пример 2: `contains("SkyPro", "U") -> False`
+
+Окружение: Windows 10
+platform win32 -- Python 3.14.2, pytest-9.0.2, pluggy-1.6.0
