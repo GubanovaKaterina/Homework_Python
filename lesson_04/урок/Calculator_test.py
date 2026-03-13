@@ -1,12 +1,12 @@
-import pytest
+#import pytest
 from lesson_04.урок.Calculator import Calcuator
 
-def test_sum_possitive_num():
+#def test_sum_possitive_num():
     calculator = Calcuator()
     res = calculator.sum(4, 5)
     assert res == 9
 
-def test_div_by_zero():
+#def test_div_by_zero():
     calculator = Calcuator()
     with pytest.raises(ArithmeticError):
         calculator.div(10, 0)

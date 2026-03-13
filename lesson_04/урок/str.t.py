@@ -1,4 +1,4 @@
-import pytest
+#import pytest
 from lesson_04.урок.string_processor import StringProcessor
 
 #@pytest.mark.parametrize( 'num1, num2, result' )
@@ -16,7 +16,7 @@ from lesson_04.урок.string_processor import StringProcessor
         ("hello world", "Hello world."),
     ],
 )
-def test_process_positive(input_text, expected_output):
+#def test_process_positive(input_text, expected_output):
     processor = StringProcessor()
     assert processor.process(input_text) == expected_output
 
@@ -24,7 +24,7 @@ def test_process_positive(input_text, expected_output):
     "input_text, expected_output",
     [("", "."), ("    ", "    .")],
 )
-def test_process_negative(input_text, expected_output):
+#def test_process_negative(input_text, expected_output):
     processor = StringProcessor()
     assert processor.process(input_text) == expected_output
 

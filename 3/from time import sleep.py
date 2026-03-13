@@ -1,5 +1,3 @@
-python
-
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.edge.service import Service
